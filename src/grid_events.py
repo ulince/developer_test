@@ -1,5 +1,5 @@
 #assumption: the highest number of tickets per event = 10
-#the highest price per ticket, ticket prices are integers = 100
+#the highest price per ticket = 100
 #events with zero tickets are not shown, even if they are closer
 
 import sys
@@ -33,8 +33,16 @@ def main(argv):
         print("Incorrect input. Please try again.")
         return
 
+    if len(coordinates_list) < 2:
+        print("Not enough coordinates. Please try again.")
+        return
+
     x = coordinates_list[0]
     y = coordinates_list[1]
+
+    if not in_range(x,y):
+        print("Coordinates not in rage. Please try again")
+        return
 
     #generate seed data
     grid = seed_data()
@@ -99,6 +107,7 @@ def get_closest_events(grid, starting_x, starting_y, limit=6):
     queue.append((starting_x,starting_y))
     seen.add((starting_x, starting_y))
 
+    #do a breadth-first type traversal
     while len(seen) < 441 and len(closest_events) < limit:
         if deque:
             x,y = queue.popleft()
@@ -126,7 +135,6 @@ def get_closest_events(grid, starting_x, starting_y, limit=6):
             seen.add((x, y - 1))
 
     return closest_events
-
 
 def in_range(x, y):
     if x <= 10 and x >= -10 and y <= 10 and y >= -10:
