@@ -1,7 +1,7 @@
 # Developer test
 After cloning or downloading the project, to run the program execute:
 ```
-cd src
+cd /developer_test/src
 python grid_test.py
 ```
 Additionally, provide the optional command-line argument '--all' to have the program print all the randomly generated seed data after the required results:
