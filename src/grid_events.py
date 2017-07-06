@@ -109,7 +109,7 @@ def get_closest_events(grid, starting_x, starting_y, limit=6):
 
     #do a breadth-first type traversal
     while len(seen) < 441 and len(closest_events) < limit:
-        if deque:
+        if queue:
             x,y = queue.popleft()
         else:
             break
